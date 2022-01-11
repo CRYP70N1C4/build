@@ -32,7 +32,6 @@ jobs:
           ref: r2.8
 
       - name: build whl
-        working-directory: ./tensorflow
         run: |
           dir
           python configure.py
