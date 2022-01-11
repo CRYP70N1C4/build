@@ -15,9 +15,6 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Setup Bazel
-        uses: abhinavsingh/setup-bazel@v3
-
       - uses: actions/checkout@v2
         with:
           repository: tensorflow/tensorflow
@@ -37,7 +34,6 @@ jobs:
 
       - name: build whl
         run: |
-          cd tensorflow
-          python ./configure.py
-          ./bazel.exe build --config=opt //tensorflow/tools/pip_package:build_pip_package
+          python tensorflow/configure.py
+          bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package
           bazel-bin\tensorflow\tools\pip_package\build_pip_package C:/tmp/tensorflow_pkg
