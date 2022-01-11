@@ -15,9 +15,9 @@ jobs:
         with:
           python-version: "3.10"
 
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
         with:
-          name: tensorflow/tensorflow
+          repository: tensorflow/tensorflow
           ref: r2.8
 
       - name: Setup Bazel
