@@ -33,9 +33,12 @@ jobs:
 
       - name: build whl
         run: |
-          dir
           python configure.py
-          dir
           bazel build -c opt --define=no_tensorflow_py_deps=true //tensorflow/tools/pip_package:build_pip_package
           dir
+          dir bazel-bin
+          dir bazel-bin\tensorflow
+          dir bazel-bin\tensorflow\tools\
+          dir bazel-bin\tensorflow\tools\pip_package
+          dir bazel-bin\tensorflow\tools\pip_package\build_pip_package
           bazel-bin\tensorflow\tools\pip_package\build_pip_package C:/tmp/tensorflow_pkg
