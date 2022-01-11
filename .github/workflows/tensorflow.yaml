@@ -33,7 +33,8 @@ jobs:
           pip3 install keras_applications --no-deps
 
       - name: build whl
+        working-directory: ./tensorflow
         run: |
-          python tensorflow/configure.py
+          python configure.py
           bazel build -c opt //tensorflow/tools/pip_package:build_pip_package
           bazel-bin\tensorflow\tools\pip_package\build_pip_package C:/tmp/tensorflow_pkg
