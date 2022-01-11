@@ -15,12 +15,6 @@ jobs:
         with:
           python-version: "3.10"
 
-      - uses: actions/checkout@v2
-        with:
-          repository: tensorflow/tensorflow
-          ref: r2.8
-
-
       - name: Setup VS2019
         uses: warrenbuckley/Setup-MSBuild@v1
         env:
@@ -32,9 +26,15 @@ jobs:
           pip3 install six numpy wheel
           pip3 install keras_applications --no-deps
 
+      - uses: actions/checkout@v2
+        with:
+          repository: tensorflow/tensorflow
+          ref: r2.8
+
       - name: build whl
         working-directory: ./tensorflow
         run: |
+          dir
           python configure.py
           bazel build -c opt //tensorflow/tools/pip_package:build_pip_package
           bazel-bin\tensorflow\tools\pip_package\build_pip_package C:/tmp/tensorflow_pkg
