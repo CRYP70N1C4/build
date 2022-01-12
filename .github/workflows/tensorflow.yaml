@@ -19,7 +19,7 @@ jobs:
         uses: warrenbuckley/Setup-MSBuild@v1
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      
+
       - name: Add Component
         shell: cmd
         run: |
@@ -30,7 +30,7 @@ jobs:
           dir 'C:\Program Files (x86)\Microsoft Visual Studio\2019'
           dir 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise'
           dir 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC'
-          set BAZEL_VC=C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC
+          set BAZEL_VC='C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC'
 
       - name: Install dependencies
         run: |
