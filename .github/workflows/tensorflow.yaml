@@ -33,6 +33,9 @@ jobs:
 
       - name: build whl
         run: |
+          dir C:\Program Files (x86)\Microsoft Visual Studio
+          dir set BAZEL_VC=C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools
+          set BAZEL_VC=C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC
           python configure.py
           bazel build -c opt --define=no_tensorflow_py_deps=true //tensorflow/tools/pip_package:build_pip_package
           dir
