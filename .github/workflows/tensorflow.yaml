@@ -20,18 +20,6 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
-      - name: Add Component
-        shell: cmd
-        run: |
-          "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --channelId VisualStudio.16.Release --productId Microsoft.VisualStudio.Product.Enterprise -q --includeRecommended --add "Microsoft.VisualStudio.Component.VC.14.25.x86.x64"
-
-      - name: Setup VS2019
-        run: |
-          dir 'C:\Program Files (x86)\Microsoft Visual Studio\2019'
-          dir 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise'
-          dir 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC'
-          set BAZEL_VC='C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC'
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -45,6 +33,8 @@ jobs:
 
       - name: build whl
         run: |
+          bazel -h
+          set BAZEL_VC='C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC'
           python configure.py
           bazel build -c opt --define=no_tensorflow_py_deps=true //tensorflow/tools/pip_package:build_pip_package
           dir
